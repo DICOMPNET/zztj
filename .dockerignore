@@ -1,0 +1,7 @@
+data/raw
+data/parsed
+scripts
+.git
+.venv
+__pycache__
+*.pyc

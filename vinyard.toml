@@ -1,0 +1,15 @@
+name = "zizhitongjian"
+port = 8080
+health = "/health"
+health_retries = 90
+route = "port"
+public_port = 42105
+pinned = true
+watch = true
+memory = "1g"
+cpus = 1
+proxy = false
+capability = "资治通鉴全文可视化：编年/人物/事件/关系多视角交互"
+[[faces]]
+kind = "ui"
+path = "/"
