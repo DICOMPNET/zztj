@@ -163,6 +163,33 @@ def main():
     with open(os.path.join(WEB, "graph.json"), "w", encoding="utf-8") as fh:
         json.dump({"nodes": used or top, "links": links}, fh, ensure_ascii=False)
 
+    # 时序事件链数据：top 人物 × 逐事件提及（供关系页时序视图）
+    REL_TOP = 200
+    rel_persons = [[p["name"], p["count"]] for p in pidx[:REL_TOP]]
+    rel_names = [n for n, _ in rel_persons]
+    rel_events = []
+    eid = 0
+    for f in sorted(glob.glob(os.path.join(WEB, "juan", "*.json"))):
+        j = json.load(open(f, encoding="utf-8"))
+        for s in j.get("sections", []):
+            for y in s.get("years", []):
+                if y.get("year") is None:
+                    continue
+                for b in y.get("blocks", []):
+                    hits = [i for i, nm in enumerate(rel_names)
+                            if nm in b["text"]]
+                    if not hits:
+                        continue
+                    rel_events.append(
+                        [eid, y["year"], j["juan"], y["label"],
+                         s["king"], 1 if b["type"] == "commentary" else 0,
+                         summarize(b["text"], 60), hits])
+                    eid += 1
+    with open(os.path.join(WEB, "relations.json"), "w",
+              encoding="utf-8") as fh:
+        json.dump({"persons": rel_persons, "events": rel_events}, fh,
+                  ensure_ascii=False)
+
     stats = {"juan": len(index), "years": len(timeline),
              "events": total_events, "commentaries": total_comms,
              "chars": total_chars,
@@ -175,7 +202,8 @@ def main():
     print(json.dumps({k: stats[k] for k in
                       ["juan", "years", "events", "commentaries", "chars",
                        "ymin", "ymax"]}, ensure_ascii=False))
-    print("persons:", len(pidx), "graph links:", len(links))
+    print("persons:", len(pidx), "graph links:", len(links),
+          "rel events:", len(rel_events))
 
 if __name__ == "__main__":
     main()

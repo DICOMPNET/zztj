@@ -161,7 +161,7 @@
       .attr("transform", "translate(0," + (padT + innerH) + ")")
       .call(axis);
 
-    // brush 縮放
+    // brush 縮放（置於頂層；無拖動的點擊視為選年）
     var brush = d3.brushX()
       .extent([[padL, padT], [width - padR, padT + innerH]])
       .on("end", function (event) {
@@ -173,7 +173,17 @@
         draw(wrap, state, detail, note);
       });
     svg.append("g").attr("class", "brush").call(brush);
-    svg.select(".brush .overlay").style("cursor", "crosshair");
+    svg.select(".brush .overlay")
+      .style("cursor", "crosshair")
+      .on("click", function (event) {
+        var yr = Math.round(x.invert(d3.pointer(event)[0]));
+        var best = null, bd = Infinity;
+        visible.forEach(function (t) {
+          var dd = Math.abs(t.y - yr);
+          if (dd < bd) { bd = dd; best = t; }
+        });
+        if (best) selectYear(best, state, detail, wrap, note);
+      });
     svg.on("dblclick", function () {
       state.domain = state.fullDomain.slice();
       draw(wrap, state, detail, note);
