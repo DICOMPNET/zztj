@@ -42,6 +42,17 @@ docker run -e PORT=8080 -p 8080:8080 zztj
 
 平台契約見 `vinyard.toml`（port 8080、health `/health`）。
 
+## Cloudflare Workers 部署
+
+```bash
+export CLOUDFLARE_API_TOKEN=... CLOUDFLARE_ACCOUNT_ID=...
+npx wrangler deploy
+```
+
+- `wrangler.toml`：Worker（`worker/index.js`）+ Static Assets（`web/`）+ 自定義域 `zztj.maxmizedchaos.com`（`custom_domain`，Cloudflare 自動簽證書與 DNS）
+- Worker 提供 `/health` 與 `/api/search`（首次請求從 ASSETS 載入 `web/data/search.json` 全文索引到 isolate 內存，之後毫秒級檢索）；其餘一律靜態資源
+- 線上：https://zztj.maxmizedchaos.com/
+
 ## 目錄
 
 - `app/main.py`：FastAPI 後端（靜態服務 + 全文檢索，啟動時載入 `web/data/juan/*.json` 全部塊入內存，數據目錄變化時自動重載）

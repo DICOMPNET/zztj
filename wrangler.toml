@@ -1,0 +1,13 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "zztj"
+main = "worker/index.js"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./web"
+binding = "ASSETS"
+
+# 自定义域：zztj.maxmizedchaos.com（Cloudflare 自动处理 DNS 与证书）
+routes = [
+  { pattern = "zztj.maxmizedchaos.com", custom_domain = true }
+]

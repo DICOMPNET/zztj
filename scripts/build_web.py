@@ -190,6 +190,23 @@ def main():
         json.dump({"persons": rel_persons, "events": rel_events}, fh,
                   ensure_ascii=False)
 
+    # 全文检索索引（单文件，供 Cloudflare Worker / 后端加载）
+    search_rows = []
+    for f in sorted(glob.glob(os.path.join(WEB, "juan", "*.json"))):
+        j = json.load(open(f, encoding="utf-8"))
+        for s in j.get("sections", []):
+            for y in s.get("years", []):
+                for b in y.get("blocks", []):
+                    search_rows.append(
+                        [j["juan"], j["juan_label"], j.get("dynasty", ""),
+                         s["king"], y["year"], y["label"],
+                         y.get("ganzhi") or "",
+                         1 if b["type"] == "commentary" else 0,
+                         b.get("n") or 0, b.get("speaker") or "",
+                         b["text"]])
+    with open(os.path.join(WEB, "search.json"), "w", encoding="utf-8") as fh:
+        json.dump(search_rows, fh, ensure_ascii=False)
+
     stats = {"juan": len(index), "years": len(timeline),
              "events": total_events, "commentaries": total_comms,
              "chars": total_chars,
