@@ -43,6 +43,10 @@
     var fn = Z.views[r.view];
     if (fn) fn(container, r.params);
     else container.appendChild(Z.empty("視圖不存在"));
+    /* 百度统计：hash 切换不会自动产生 PV，每次路由手动上报完整路径 */
+    if (window._hmt) {
+      window._hmt.push(["_trackPageview", location.pathname + location.hash]);
+    }
   }
 
   window.addEventListener("hashchange", route);

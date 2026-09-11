@@ -10,8 +10,11 @@
 <!-- 百度统计 -->
 <script>
 var _hmt = _hmt || [];
+/* SPA：关闭自动 PV，由路由统一手动上报（含 #/read/88 等 hash 路径） */
+_hmt.push(['_setAutoPageview', false]);
 (function() {
   var hm = document.createElement("script");
+  hm.async = true;
   hm.src = "https://hm.baidu.com/hm.js?37f1b8c643428067537b4fca4ca9f033";
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
@@ -40,7 +43,7 @@ var _hmt = _hmt || [];
 </header>
 <main id="view" tabindex="-1"></main>
 <footer id="site-footer">
-  <span>資治通鑑可視化 · 全文二百九十四卷 · 數據源：維基文庫</span>
+  <span>資治通鑑可視化 · 全文二百九十四卷 · <a href="https://github.com/firenzemc/zizhitongjian.git" target="_blank" rel="noopener noreferrer">開源項目</a></span>
 </footer>
 <div class="fixed-tools" id="fixed-tools">
   <button type="button" id="lang-toggle" class="tool-btn" data-i18n-skip
