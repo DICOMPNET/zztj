@@ -6,3 +6,4 @@
 /web/index.html merge=ours
 /web/css/** merge=ours
 /web/js/** merge=ours
+/web/vendor/** merge=ours

@@ -47,4 +47,22 @@
 
   window.addEventListener("hashchange", route);
   document.addEventListener("DOMContentLoaded", route);
+
+  /* 返回頂部：滾過一屏顯示，點擊平滑回頂 */
+  document.addEventListener("DOMContentLoaded", function () {
+    var btn = document.getElementById("back-top");
+    if (!btn) return;
+    var ticking = false;
+    function sync() {
+      ticking = false;
+      btn.hidden = window.scrollY <= window.innerHeight * 0.6;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(sync); }
+    }, { passive: true });
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    sync();
+  });
 })(window.ZZTJ);

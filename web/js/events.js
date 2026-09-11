@@ -24,10 +24,13 @@
     function doSearch() {
       var q = input.value.trim();
       if (!q) return;
-      var terms = q.split(/\s+/);
+      /* 後端索引為繁體：查詢詞先簡轉繁（已是繁體則冪等不變），
+         高亮詞同取繁體以匹配 snippet；空結果提示仍顯示用戶原詞 */
+      var tq = (window.ZZTJ && ZZTJ.toTraditional) ? ZZTJ.toTraditional(q) : q;
+      var terms = tq.split(/\s+/);
       resultBox.innerHTML = "";
       resultBox.appendChild(Z.loading("檢索中…"));
-      fetch("api/search?q=" + encodeURIComponent(q))
+      fetch("api/search?q=" + encodeURIComponent(tq))
         .then(function (r) {
           if (!r.ok) throw new Error(r.status);
           return r.json();

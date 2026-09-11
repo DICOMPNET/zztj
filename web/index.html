@@ -30,8 +30,15 @@
 <footer id="site-footer">
   <span>資治通鑑可視化 · 全文二百九十四卷 · 數據源：維基文庫</span>
 </footer>
+<div class="fixed-tools" id="fixed-tools">
+  <button type="button" id="lang-toggle" class="tool-btn" data-i18n-skip
+          aria-label="切換為繁體" title="切換為繁體">繁</button>
+  <button type="button" id="back-top" class="tool-btn"
+          aria-label="返回頂部" title="返回頂部" hidden>↑</button>
+</div>
 <script src="vendor/d3.min.js"></script>
 <script src="js/util.js"></script>
+<script src="vendor/i18n.js"></script>
 <script src="js/block.js"></script>
 <script src="js/overview.js"></script>
 <script src="js/chronicle.js"></script>
