@@ -1,0 +1,164 @@
+{
+ "juan": 294,
+ "years": 1410,
+ "events": 27146,
+ "commentaries": 157,
+ "chars": 3102267,
+ "ymin": -403,
+ "ymax": 959,
+ "dynasties": [
+  {
+   "name": "周",
+   "juan": 5,
+   "events": 331,
+   "comms": 9,
+   "chars": 45094,
+   "ymin": -403,
+   "ymax": -256
+  },
+  {
+   "name": "秦",
+   "juan": 3,
+   "events": 152,
+   "comms": 6,
+   "chars": 31120,
+   "ymin": -255,
+   "ymax": -207
+  },
+  {
+   "name": "漢",
+   "juan": 60,
+   "events": 4018,
+   "comms": 65,
+   "chars": 598634,
+   "ymin": -206,
+   "ymax": 219
+  },
+  {
+   "name": "魏",
+   "juan": 10,
+   "events": 661,
+   "comms": 11,
+   "chars": 106006,
+   "ymin": 220,
+   "ymax": 264
+  },
+  {
+   "name": "晉",
+   "juan": 38,
+   "events": 3719,
+   "comms": 14,
+   "chars": 409412,
+   "ymin": 265,
+   "ymax": 419
+  },
+  {
+   "name": "",
+   "juan": 2,
+   "events": 153,
+   "comms": 0,
+   "chars": 21113,
+   "ymin": 322,
+   "ymax": 350
+  },
+  {
+   "name": "宋",
+   "juan": 16,
+   "events": 1833,
+   "comms": 3,
+   "chars": 162806,
+   "ymin": 420,
+   "ymax": 478
+  },
+  {
+   "name": "齊",
+   "juan": 10,
+   "events": 920,
+   "comms": 6,
+   "chars": 96163,
+   "ymin": 479,
+   "ymax": 501
+  },
+  {
+   "name": "梁",
+   "juan": 22,
+   "events": 1996,
+   "comms": 5,
+   "chars": 216806,
+   "ymin": 502,
+   "ymax": 556
+  },
+  {
+   "name": "陳",
+   "juan": 10,
+   "events": 1115,
+   "comms": 3,
+   "chars": 106931,
+   "ymin": 557,
+   "ymax": 588
+  },
+  {
+   "name": "隋",
+   "juan": 8,
+   "events": 651,
+   "comms": 1,
+   "chars": 91513,
+   "ymin": 589,
+   "ymax": 617
+  },
+  {
+   "name": "唐",
+   "juan": 81,
+   "events": 8711,
+   "comms": 25,
+   "chars": 910176,
+   "ymin": 618,
+   "ymax": 906
+  },
+  {
+   "name": "後梁",
+   "juan": 6,
+   "events": 629,
+   "comms": 0,
+   "chars": 67147,
+   "ymin": 907,
+   "ymax": 922
+  },
+  {
+   "name": "後唐",
+   "juan": 8,
+   "events": 811,
+   "comms": 1,
+   "chars": 83959,
+   "ymin": 923,
+   "ymax": 935
+  },
+  {
+   "name": "後晉",
+   "juan": 6,
+   "events": 537,
+   "comms": 1,
+   "chars": 61329,
+   "ymin": 936,
+   "ymax": 946
+  },
+  {
+   "name": "後漢",
+   "juan": 4,
+   "events": 377,
+   "comms": 1,
+   "chars": 40653,
+   "ymin": 947,
+   "ymax": 950
+  },
+  {
+   "name": "後周",
+   "juan": 5,
+   "events": 532,
+   "comms": 6,
+   "chars": 53405,
+   "ymin": 951,
+   "ymax": 959
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>資治通鑑 · 可視化</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#/overview">
+      <span class="seal" aria-hidden="true">通<br>鑑</span>
+      <span class="brand-text">
+        <span class="brand-title">資治通鑑</span>
+        <span class="brand-sub">司馬光 · 編年體通史</span>
+      </span>
+    </a>
+    <nav id="main-nav">
+      <a href="#/overview" data-view="overview">總覽</a>
+      <a href="#/chronicle" data-view="chronicle">編年</a>
+      <a href="#/persons" data-view="persons">人物</a>
+      <a href="#/events" data-view="events">事件</a>
+      <a href="#/graph" data-view="graph">關係</a>
+      <a href="#/read" data-view="read">閱讀</a>
+    </nav>
+  </div>
+</header>
+<main id="view" tabindex="-1"></main>
+<footer id="site-footer">
+  <span>資治通鑑可視化 · 全文二百九十四卷 · 數據源：維基文庫</span>
+</footer>
+<script src="vendor/d3.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/block.js"></script>
+<script src="js/overview.js"></script>
+<script src="js/chronicle.js"></script>
+<script src="js/persons.js"></script>
+<script src="js/events.js"></script>
+<script src="js/graph.js"></script>
+<script src="js/reader.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
