@@ -42,6 +42,63 @@ docker run -e PORT=8080 -p 8080:8080 zztj
 
 平台契約見 `vinyard.toml`（port 8080、health `/health`）。
 
+## 寶塔面板 Docker 部署
+
+單容器即可完整運行（FastAPI 同時提供前端靜態頁面與 `/api/search`），無數據庫、無外部依賴。
+
+1. **安裝 Docker**：寶塔 → 軟件商店 → 安裝「Docker 管理器」。
+2. **拉取代碼**：
+
+```bash
+cd /www/wwwroot
+git clone https://github.com/DICOMPNET/zztj.git
+cd zztj
+```
+
+3. **啟動容器**（倉庫已附 `docker-compose.yml`）：
+
+```bash
+docker compose up -d --build
+```
+
+4. **放行端口**：寶塔 → 安全 → 防火墻放行 `8080`；雲服務器安全組入站同樣放行 TCP `8080`。
+5. **驗證**：`http://服務器IP:8080/health` 返回 `{"status":"ok"}`，`http://服務器IP:8080/` 為首頁。
+
+**域名 + HTTPS（可選）**：將 `docker-compose.yml` 端口改為 `"127.0.0.1:8080:8080"` 後重新 `docker compose up -d`；寶塔添加站點（純靜態）→ 反向代理至 `http://127.0.0.1:8080` → SSL 申請 Let's Encrypt 證書並開啟強制 HTTPS。
+
+**更新發布**：
+
+```bash
+cd /www/wwwroot/zztj
+git pull origin main
+docker compose up -d --build
+```
+
+服務器建議 1 核 1G 以上（啟動時載入 294 卷全文入內存）。
+
+## 與上游同步（只更新內容，保留自有樣式）
+
+本倉庫 fork 自 `https://github.com/firenzemc/zizhitongjian.git`，`upstream` 指向上游。數據層為 `data/`、`web/data/`；樣式層為 `web/index.html`、`web/css/`、`web/js/`，已通過 `.gitattributes`（`merge=ours`）保護。
+
+新機器首次配置：
+
+```bash
+git remote add upstream https://github.com/firenzemc/zizhitongjian.git
+git config merge.ours.driver true
+```
+
+只同步上游數據內容（不動樣式）：
+
+```bash
+git fetch upstream
+git diff --stat HEAD upstream/main -- data web/data   # 預覽變更
+git checkout upstream/main -- data web/data           # 僅取數據
+git commit -m "chore: 同步上游原始數據"
+git push origin main
+```
+
+需要上游其餘代碼改進時可 `git merge upstream/main`，樣式衝突會自動保留本方版本。
+
 ## Cloudflare Workers 部署
 
 ```bash
