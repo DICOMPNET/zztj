@@ -1,0 +1,12 @@
+services:
+  zztj:
+    build: .
+    image: zztj:latest
+    container_name: zztj
+    restart: always
+    ports:
+      # 直接用 IP:8080 访问时保持下面写法；
+      # 若用宝塔 Nginx 反代域名，改为 "127.0.0.1:8080:8080"（不对公网暴露）
+      - "8080:8080"
+    environment:
+      - PORT=8080
