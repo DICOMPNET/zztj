@@ -1,2 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# 样式层保护：从 upstream 合并时，以下路径若双方都有修改，始终保留我方版本
+# 生效前提（每台克隆本机执行一次）：git config merge.ours.driver true
+/web/index.html merge=ours
+/web/css/** merge=ours
+/web/js/** merge=ours
